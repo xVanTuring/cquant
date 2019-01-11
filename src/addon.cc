@@ -51,8 +51,8 @@ Napi::Value GetPalette(const Napi::CallbackInfo &info)
 }
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
-  exports.Set(Napi::String::New(env, "GetPalette"),
-              Napi::Function::New(env, GetPalette));
+  // exports.Set(Napi::String::New(env, "GetPalette"),
+  //             Napi::Function::New(env, GetPalette));
   exports.Set(Napi::String::New(env, "PaletteAsync"),
               Napi::Function::New(env, PaletteAsync));
   return exports;

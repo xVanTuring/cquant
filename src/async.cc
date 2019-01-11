@@ -8,7 +8,21 @@ public:
       : Napi::AsyncWorker(callback),
         pix(pix), max_color(max_color),
         counter(NULL), cmap(NULL) {}
-  ~PaletteWorker() {}
+  ~PaletteWorker()
+  {
+    if (counter)
+    {
+      free(counter);
+    }
+    if (cmap)
+    {
+      free(cmap->array);
+      free(cmap);
+    }
+    if(pix){
+      free(pix);
+    }
+  }
   void Execute()
   {
     counter = (int *)malloc(sizeof(int) * max_color);
@@ -28,9 +42,6 @@ public:
       item.Set("count", counter[i]);
       result.Set(i, item);
     }
-    free(counter);
-    free(cmap->array);
-    free(cmap);
     Callback().Call({Env().Undefined(), result});
   }
 

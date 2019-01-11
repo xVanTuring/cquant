@@ -1,20 +1,19 @@
 const addon = require('bindings')('cquant')
 const sharp = require('sharp')
-
+const async = require('async')
+let queue = async.queue(({ buffer, index }, callback) => {
+  addon.PaletteAsync(buffer, 8, (err, val) => {
+    console.log(index)
+    callback()
+  })
+}, 10)
 sharp('./img/0.png')
   .raw()
   .toBuffer().then(buffer => {
-    // var time = Date.now()
-    let data = addon.GetPalette(buffer, 8)
-    addon.PaletteAsync(buffer, 8, (err, val) => {
-      // console.log(index)
-    })
-    // console.log(Date.now() - time + 'ms')
-    // console.log(data)
+    const time = Date.now()
+    for (let index = 0; index < 50000; index++) {
+      queue.push({ buffer, index })
+    }
   }).catch(err => {
     console.log(err)
   })
-const http = require('http')
-http.createServer(() => {
-
-}).listen(300);
