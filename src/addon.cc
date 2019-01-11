@@ -1,6 +1,7 @@
 #include <napi.h>
 #include <iostream>
 #include "colorquant.h"
+#include "async.h"
 Napi::Value GetPalette(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
@@ -52,6 +53,8 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
   exports.Set(Napi::String::New(env, "GetPalette"),
               Napi::Function::New(env, GetPalette));
+  exports.Set(Napi::String::New(env, "PaletteAsync"),
+              Napi::Function::New(env, PaletteAsync));
   return exports;
 }
 NODE_API_MODULE(cquant, Init)
