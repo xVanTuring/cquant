@@ -26,7 +26,7 @@ public:
   void Execute()
   {
     counter = (int *)malloc(sizeof(int) * max_color);
-    cmap = pix_median_cut_quant24(pix, max_color, 5, 1, counter);
+    cmap = pix_median_cut_quant(pix,3, max_color, 5, 1, counter);
   }
   void OnOK()
   {

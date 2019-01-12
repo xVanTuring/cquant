@@ -2,6 +2,7 @@
 #include <iostream>
 #include "colorquant.h"
 #include "async.h"
+// sync code
 Napi::Value GetPalette(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
