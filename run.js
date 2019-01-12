@@ -1,16 +1,11 @@
 const cquant = require('./index')
 const sharp = require('sharp')
-const async = require('async')
-// let queue = async.queue(({ buffer, index }, callback) => {
-//   cquant.PaletteAsync(buffer, 8, (err, val) => {
-//     console.log(index)
-//     callback()
-//   })
-// }, 10)
+// const async = require('async')
+
 sharp('./img/0.png')
   .raw()
   .toBuffer().then(buffer => {
-    cquant.PaletteAsync(buffer, 5, (err, val) => {
+    cquant.PaletteAsync(buffer, 5, 3, (err, val) => {
       console.log(val)
       // callback()
     })
