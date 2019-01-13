@@ -5,9 +5,10 @@ const sharp = require('sharp')
 sharp('./img/0.png')
   .raw()
   .toBuffer().then(buffer => {
+    var start = Date.now()
     cquant.PaletteAsync(buffer, 5, 3, (err, val) => {
+      console.log(Date.now() - start);
       console.log(val)
-      // callback()
     })
   }).catch(err => {
     console.log(err)

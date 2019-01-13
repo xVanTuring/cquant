@@ -4,10 +4,10 @@
 class PaletteWorker : public Napi::AsyncWorker
 {
 public:
-  PaletteWorker(Napi::Function &callback, PIX24 *pix, int max_color,int depth)
+  PaletteWorker(Napi::Function &callback, PIX *pix, int max_color)
       : Napi::AsyncWorker(callback),
         pix(pix), max_color(max_color),
-        counter(NULL), cmap(NULL),depth(depth) {}
+        counter(NULL), cmap(NULL) {}
   ~PaletteWorker()
   {
     if (counter)
@@ -19,15 +19,15 @@ public:
       free(cmap->array);
       free(cmap);
     }
-    if(pix){
+    if (pix)
+    {
       free(pix);
     }
   }
   void Execute()
   {
     counter = (int *)malloc(sizeof(int) * max_color);
-    // TODO: input
-    cmap = pix_median_cut_quant(pix,3, max_color, depth, 1, counter);
+    cmap = pix_median_cut_quant(pix, max_color, 5, 1, counter);
   }
   void OnOK()
   {
@@ -47,11 +47,10 @@ public:
   }
 
 private:
-  PIX24 *pix;
+  PIX *pix;
   int max_color;
   PIXCMAP *cmap;
   int *counter;
-  int depth;
 };
 Napi::Value PaletteAsync(const Napi::CallbackInfo &info)
 {
@@ -62,11 +61,12 @@ Napi::Value PaletteAsync(const Napi::CallbackInfo &info)
 
   Napi::Function callback = info[3].As<Napi::Function>();
 
-  PIX24 *pix24 = (PIX24 *)malloc(sizeof(PIX24));
-  pix24->n = buffer.Length();
-  pix24->pixs = buffer.Data();
+  PIX *pix = (PIX *)malloc(sizeof(PIX));
+  pix->n = buffer.Length();
+  pix->pixs = buffer.Data();
+  pix->depth = depth;
 
-  PaletteWorker *paletteWorker = new PaletteWorker(callback, pix24, max_color,depth);
+  PaletteWorker *paletteWorker = new PaletteWorker(callback, pix, max_color);
   paletteWorker->Queue();
   return info.Env().Undefined();
 }
