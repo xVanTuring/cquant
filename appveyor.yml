@@ -13,7 +13,7 @@ install:
     - ps: Install-Product node 8 x64
     - ps: node --version
     - cmd: git submodule update --init --recursive
-    - cmd: node install
+    - cmd: npm install
 build_script: 
   - npm run build
 test_script:
