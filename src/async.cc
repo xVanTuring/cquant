@@ -54,18 +54,24 @@ private:
 };
 Napi::Value PaletteAsync(const Napi::CallbackInfo &info)
 {
-  auto buffer = info[0].As<Napi::Buffer<RGB_QUAD>>();
+  auto depth = info[2].As<Napi::Number>().Uint32Value();
 
   auto max_color = info[1].As<Napi::Number>().Uint32Value();
-  auto depth = info[2].As<Napi::Number>().Uint32Value();
+  
 
   Napi::Function callback = info[3].As<Napi::Function>();
 
   PIX *pix = (PIX *)malloc(sizeof(PIX));
-  pix->n = buffer.Length();
-  pix->pixs = buffer.Data();
+  if(depth==3){
+    auto buffer = info[0].As<Napi::Buffer<RGB_QUAD>>();
+      pix->n = buffer.Length();
+      pix->pixs = buffer.Data();
+  }else if (depth ==4){
+    auto buffer = info[0].As<Napi::Buffer<RGBA_QUAD>>();
+    pix->n = buffer.Length();
+    pix->pixs = buffer.Data();
+  }
   pix->depth = depth;
-
   PaletteWorker *paletteWorker = new PaletteWorker(callback, pix, max_color);
   paletteWorker->Queue();
   return info.Env().Undefined();
