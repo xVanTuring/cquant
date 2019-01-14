@@ -13,7 +13,9 @@ public:
 			free(counter);
 		}
 		if (cmap) {
-			free(cmap->array);
+			if (cmap->array) {
+				free(cmap->array);
+			}
 			free(cmap);
 		}
 		if (pix) {
@@ -22,13 +24,13 @@ public:
 	}
 	void Execute() {
 		counter = (size_t *)malloc(sizeof(size_t) * max_color);
-		cmap = pix_median_cut_quant(pix, max_color, 5, 1, counter);
+		cmap = pix_median_cut_quant(pix, max_color, 5, 0, counter);
 	}
 	void OnOK() {
 		Napi::HandleScope scope(Env());
 
 		if (cmap == NULL) {
-			auto err = Napi::Error::New(Env(), "buffer corrupted or image to small or to less color");
+			auto err = Napi::Error::New(Env(), "Buffer corrupted or image too small or too less color");
 			Callback().Call({ err.Value(), Env().Undefined() });
 			return;
 		}
@@ -53,12 +55,11 @@ private:
 	size_t *counter;
 };
 Napi::Value PaletteAsync(const Napi::CallbackInfo &info) {
-	auto depth = info[2].As<Napi::Number>().Uint32Value();
+	auto depth = info[2].As<Napi::Number>().Int32Value();
+	auto max_color = info[1].As<Napi::Number>().Int32Value();
 
-	auto max_color = info[1].As<Napi::Number>().Uint32Value();
-
-
-	Napi::Function callback = info[3].As<Napi::Function>();
+	Napi::Function callback;
+	callback = info[3].As<Napi::Function>();
 
 	PIX *pix = (PIX *)malloc(sizeof(PIX));
 	if (depth == 3) {
@@ -71,7 +72,6 @@ Napi::Value PaletteAsync(const Napi::CallbackInfo &info) {
 		pix->n = buffer.Length();
 		pix->pixs = buffer.Data();
 	}
-	printf("%d", pix->n);
 	pix->depth = depth;
 	PaletteWorker *paletteWorker = new PaletteWorker(callback, pix, max_color);
 	paletteWorker->Queue();

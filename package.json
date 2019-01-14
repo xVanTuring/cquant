@@ -2,10 +2,11 @@
   "name": "cquant",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "cquant.js",
   "scripts": {
     "install": "cmake-js compile",
-    "build": "cmake-js compile"
+    "build": "cmake-js compile",
+    "test": "node ./test/test.js"
   },
   "keywords": [],
   "author": "",
