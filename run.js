@@ -8,7 +8,6 @@ sharp('./img/0.jpg')
     if (!err) {
       var start = Date.now()
       cquant.PaletteAsync(buffer, 8, info.channels, (_err, val) => {
-        console.log(_err)
         console.log(Date.now() - start + ' ms');
         console.log(val)
       })
