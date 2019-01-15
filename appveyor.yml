@@ -17,10 +17,10 @@ install:
     - cmd: git submodule update --init --recursive
     - cmd: npm install
 build_script: 
-  - npm run rebuild
   - npm run deploy
 
 test_script:
+  - npm run rebuild
   - npm run test
 cache: 
   - node_modules -> package.json
