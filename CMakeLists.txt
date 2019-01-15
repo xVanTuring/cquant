@@ -13,8 +13,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 
 target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB})
 target_link_libraries(${PROJECT_NAME} LibColorQuant)
+execute_process(COMMAND node -p "require('node-addon-api').include" OUTPUT_VARIABLE NAPI_INCLUDES)
+message(STATUS "${NAPI_INCLUDES}")
 
-target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/node_modules/node-addon-api")
+target_include_directories(${PROJECT_NAME} PRIVATE "${NAPI_INCLUDES}")
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/color-quant/src")
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/color-quant/heap/src")
 
