@@ -2,7 +2,7 @@ var spawn = require('cross-spawn')
 var npmRunPath = require('npm-run-path-compat')
 var log = require('npmlog')
 var versionChanged = require('version-changed')
-var version = require('./package').version
+var version = require('../package.json').version
 var getTarget = require('node-abi').getTarget
 
 if (!process.env.CI) process.exit()
