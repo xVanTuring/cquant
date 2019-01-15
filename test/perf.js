@@ -32,12 +32,21 @@ sharp('./img/0.jpg')
   });
 // 3.jpg 1920 x 1280
 // image-palette
-(async () => {
+// (async () => {
+//   let start1 = Date.now();
+//   let pixs = await pixels('./img/3.jpg')
+//   var { ids, colors } = palette(pixs)
+//   let time = Date.now() - start1
+//   console.log('image-palette: 3.jpg 1920 x 1280 Time: ' + time + ' ms')
+// })();
+(function () {
   let start1 = Date.now();
-  let pixs = await pixels('./img/3.jpg')
-  var { ids, colors } = palette(pixs)
-  let time = Date.now() - start1
-  console.log('image-palette: 3.jpg 1920 x 1280 Time: ' + time + ' ms')
+  pixels('./img/3.jpg').then(pixs => {
+    palette(pixs)
+    let time = Date.now() - start1
+    console.log('image-palette: 3.jpg 1920 x 1280 Time: ' + time + ' ms')
+  }).catch(err => {
+  })
 })();
 // cquant
 sharp('./img/3.jpg')
