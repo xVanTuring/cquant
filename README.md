@@ -1,6 +1,7 @@
 # CQuant
 [![Build status](https://ci.appveyor.com/api/projects/status/gy8vrvnkhrh9tw1s?svg=true)](https://ci.appveyor.com/project/xVanTuring/cquant)
 ## Usage
+! make sure you have cmake and build tools, the pre-build binary is coming soon!
 > `npm i cquant`
 ### Basic
 ``` js

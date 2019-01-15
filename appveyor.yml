@@ -16,6 +16,8 @@ install:
     - cmd: npm install
 build_script: 
   - npm run build
+after_build:
+  - ps: Get-ChildItem .\prebuilds\*.tar.gz | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 test_script:
   - npm run test
 cache: 
