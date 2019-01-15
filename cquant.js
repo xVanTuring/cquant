@@ -1,5 +1,5 @@
 const addon = require('bindings')('cquant')
-function paletteAsync (buffer, depth = 3, maxColor = 5, callback = null) {
+function paletteAsync (buffer, depth, maxColor = 5, callback = null) {
   if (callback == null) {
     if (depth !== 3 && depth !== 4) {
       return Promise.reject(new Error('Wrong Depth'));

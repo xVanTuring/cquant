@@ -2,6 +2,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/gy8vrvnkhrh9tw1s?svg=true)](https://ci.appveyor.com/project/xVanTuring/cquant)
 ## Usage
 > `npm install cquant` (not ready)
+### Basic
 ``` js
 const cquant = require('cquant')
 // work best with sharp for converting image to RAW buffer
@@ -22,6 +23,20 @@ sharp('path/to/image')
     }
   })
 ``` 
+### With `async.queue`
+> If you have lots of image to process, the best way to do it is using [async](https://www.npmjs.com/package/async).queue for parallel, and control-able
+``` js
+// test/example.js
+const myQueue = async.queue(async (filePath) => {
+  // note : i am using the `async` function, so the callback is not needed
+  const img = await sharp(filePath)
+    .raw() // to raw
+    .toBuffer({ resolveWithObject: true })
+  const palette = await cquant.paletteAsync(img.data, img.info.channels, 5)
+  console.log(palette)
+}, os.cpus().length - 1)
+```
+
 ## Perf
 > test result will be diff based on your local machine
 ### JPG 5572 x 3715
