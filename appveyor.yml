@@ -6,31 +6,30 @@ platform:
 - x64
 environment:
   matrix:
-  - arch: Win64
-  DeployKey:
+    - nodejs_version: "6"
+    - nodejs_version: "8"
+    - nodejs_version: "10"
+    - nodejs_version: "11"
+  PREBUILD_TOKEN:
     secure: v90vKbWs1OPl3zTHlO3UifQQ3pTPlxQvUTcJhkOJO6EZ+sFAKOTllWBDPqoIDgTS
 matrix:
   fast_finish: true
 install:
-    - ps: Install-Product node 8 x64
+    - ps: Install-Product node $env:nodejs_version x64
     - ps: node --version
     - cmd: git submodule update --init --recursive
     - cmd: npm install
-build_script: 
-  - npm run deploy
 
 test_script:
-  - npm run rebuild
+  # - npm run rebuild
   - npm run test
-cache: 
-  - node_modules -> package.json
-artifacts:
-  - path: '.\prebuilds\*.tar.gz'
-deploy:
-  provider: GitHub
-  draft: false
-  auth_token:
-    secure: v90vKbWs1OPl3zTHlO3UifQQ3pTPlxQvUTcJhkOJO6EZ+sFAKOTllWBDPqoIDgTS
-  on:
-    APPVEYOR_REPO_TAG: true
-skip_non_tags: true
+# artifacts:
+#   - path: '.\prebuilds\*.tar.gz'
+# deploy:
+#   provider: GitHub
+#   draft: false
+#   auth_token:
+#     secure: v90vKbWs1OPl3zTHlO3UifQQ3pTPlxQvUTcJhkOJO6EZ+sFAKOTllWBDPqoIDgTS
+#   on:
+#     APPVEYOR_REPO_TAG: true
+# skip_non_tags: true
