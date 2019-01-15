@@ -3,6 +3,7 @@ const spawn = require('child_process').spawn
 const async = require('async')
 const which = require('which')
 let buildQueue = async.queue((version, callback) => {
+  console.log(`Builing: ${version}`)
   let argv = ['-t', version, '--backend', 'cmake-js']
   which('prebuild', (err, filePath) => {
     if (err) {

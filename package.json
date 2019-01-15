@@ -5,7 +5,8 @@
   "main": "cquant.js",
   "scripts": {
     "install": "cmake-js compile",
-    "build": "node ./script/build/js",
+    "rebuild": "cmake-js rebuild",
+    "deploy": "node ./script/build_deploy.js",
     "test": "node ./test/test.js && node ./test/perf.js"
   },
   "keywords": [],

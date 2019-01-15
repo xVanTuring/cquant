@@ -7,6 +7,8 @@ platform:
 environment:
   matrix:
   - arch: Win64
+  DeployKey:
+    secure: v90vKbWs1OPl3zTHlO3UifQQ3pTPlxQvUTcJhkOJO6EZ+sFAKOTllWBDPqoIDgTS
 matrix:
   fast_finish: true
 install:
@@ -15,11 +17,20 @@ install:
     - cmd: git submodule update --init --recursive
     - cmd: npm install
 build_script: 
-  - npm run build
-after_build:
-  - ps: Get-ChildItem .\prebuilds\*.tar.gz | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - npm run rebuild
+  - npm run deploy
+
 test_script:
   - npm run test
 cache: 
-  - build
   - node_modules -> package.json
+artifacts:
+  - path: '.\prebuilds\*.tar.gz'
+deploy:
+  provider: GitHub
+  draft: false
+  auth_token:
+    secure: v90vKbWs1OPl3zTHlO3UifQQ3pTPlxQvUTcJhkOJO6EZ+sFAKOTllWBDPqoIDgTS
+  on:
+    APPVEYOR_REPO_TAG: true
+skip_non_tags: true
