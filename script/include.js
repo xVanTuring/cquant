@@ -1,0 +1,1 @@
+console.log(require('node-addon-api').include.replace(/\"/g, ""))

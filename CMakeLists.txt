@@ -3,8 +3,11 @@ cmake_minimum_required(VERSION 2.8)
 project(cquant)
 
 include_directories(${CMAKE_JS_INC})
-message(STATUS "${CMAKE_SOURCE_DIR}/node_modules/node-addon-api")
-include_directories("${CMAKE_SOURCE_DIR}/node_modules/node-addon-api")
+execute_process(COMMAND node include.js
+        WORKING_DIRECTORY  "${CMAKE_SOURCE_DIR}/script"
+        OUTPUT_VARIABLE NAPI_INCLUDES)
+message(STATUS "NAPI: ${NAPI_INCLUDES}")
+include_directories("${NAPI_INCLUDES}")
 add_subdirectory(color-quant)
 file(GLOB SOURCE_FILES "src/*.cc" "src/*.h")
 
