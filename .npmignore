@@ -1,0 +1,6 @@
+.vscode
+img
+color-quant/js
+build
+node_modules
+**/.git

@@ -1,7 +1,7 @@
 # CQuant
 [![Build status](https://ci.appveyor.com/api/projects/status/gy8vrvnkhrh9tw1s?svg=true)](https://ci.appveyor.com/project/xVanTuring/cquant)
 ## Usage
-> `npm install cquant` (not ready)
+> `npm i cquant`
 ### Basic
 ``` js
 const cquant = require('cquant')
@@ -12,7 +12,7 @@ sharp('path/to/image')
   .toBuffer((err, buffer, info) => {
     if (!err) {
       // you need to set the buffer and
-      // the depth(only 3 for( RGB),4 (for RGBA) are accepted )
+      // the depth(only 3 (for RGB),4 (for RGBA) are accepted )
       // you can use callback, or leave it empty for promise
       let iWantForColor = 4
       cquant.paletteAsync(buffer, info.channels, iWantForColor).then(res => {
