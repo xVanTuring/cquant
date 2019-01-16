@@ -52,18 +52,19 @@ prebuild('node', process.versions.node, function (err, code) {
   log.info('build', 'Trying oddball electron versions')
   // prebuild('electron', '50', function () {
   //   prebuild('electron', '53', function () {
-  //     try {
-  //       getTarget(process.versions.modules, 'electron')
-  //     } catch (err) {
-  //       log.info('No matching electron version, exiting')
-  //       process.exit(0)
-  //     }
 
-  //     prebuild('electron', process.versions.modules, function (err, code) {
-  //       if (err) process.exit(code)
-  //       log.info('All done!')
-  //       process.exit(code)
-  //     })
   //   })
   // })
+  try {
+    getTarget(process.versions.modules, 'electron')
+  } catch (err) {
+    log.info('No matching electron version, exiting')
+    process.exit(0)
+  }
+
+  prebuild('electron', process.versions.modules, function (err, code) {
+    if (err) process.exit(code)
+    log.info('All done!')
+    process.exit(code)
+  })
 })
