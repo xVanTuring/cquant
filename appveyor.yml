@@ -21,13 +21,5 @@ build: off
 test_script:
   # - npm run rebuild
   - npm run test
-# artifacts:
-#   - path: '.\prebuilds\*.tar.gz'
-# deploy:
-#   provider: GitHub
-#   draft: false
-#   auth_token:
-#     secure: v90vKbWs1OPl3zTHlO3UifQQ3pTPlxQvUTcJhkOJO6EZ+sFAKOTllWBDPqoIDgTS
-#   on:
-#     APPVEYOR_REPO_TAG: true
-# skip_non_tags: true
+only_commits:
+  message: /build/

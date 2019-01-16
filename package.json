@@ -9,7 +9,13 @@
     "deploy": "node ./script/build_deploy.js",
     "test": "node ./test/test.js && node ./test/perf.js && node ./script/build-ci.js"
   },
-  "keywords": [],
+  "keywords": [
+    "cquant",
+    "palette",
+    "quant",
+    "quantization",
+    "MMCQ"
+  ],
   "author": "xVanTuring",
   "repository": {
     "type": "git",
