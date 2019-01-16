@@ -37,31 +37,32 @@ function prebuild (runtime, target, cb) {
 
 log.info('begin', 'Prebuild-CI version', version)
 
-versionChanged(function (err, changed) {
-  if (err) throw err
-  if (!changed) {
-    log.info('No version bump, exiting')
-    process.exit(0)
-  }
+// versionChanged(function (err, changed) {
+//   if (err) throw err
+//   if (!changed) {
+//     log.info('No version bump, exiting')
+//     process.exit(0)
+//   }
 
-  prebuild('node', process.versions.modules, function (err, code) {
-    if (err) process.exit(code)
 
-    log.info('build', 'Trying oddball electron versions')
-    prebuild('electron', '50', function () {
-      prebuild('electron', '53', function () {
-        try {
-          getTarget(process.versions.modules, 'electron')
-        } catch (err) {
-          log.info('No matching electron version, exiting')
-          process.exit(0)
-        }
+// })
+prebuild('node', process.versions.modules, function (err, code) {
+  if (err) process.exit(code)
 
-        prebuild('electron', process.versions.modules, function (err, code) {
-          if (err) process.exit(code)
-          log.info('All done!')
-          process.exit(code)
-        })
+  log.info('build', 'Trying oddball electron versions')
+  prebuild('electron', '50', function () {
+    prebuild('electron', '53', function () {
+      try {
+        getTarget(process.versions.modules, 'electron')
+      } catch (err) {
+        log.info('No matching electron version, exiting')
+        process.exit(0)
+      }
+
+      prebuild('electron', process.versions.modules, function (err, code) {
+        if (err) process.exit(code)
+        log.info('All done!')
+        process.exit(code)
       })
     })
   })
