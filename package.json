@@ -13,7 +13,7 @@
   "author": "xVanTuring",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lovell/sharp"
+    "url": "git://github.com/xVanTuring/cquant"
   },
   "license": "MIT",
   "dependencies": {
