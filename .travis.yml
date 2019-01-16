@@ -42,26 +42,26 @@ matrix:
       env:
         - CC="/usr/local/clang-7.0.0/bin/clang"
         - CXX="/usr/local/clang-7.0.0/bin/clang++"      
-    - name: "OS X - Node 6"
-      os: osx
-      osx_image: xcode10.1
-      language: node_js
-      node_js: "6"
-    - name: "OS X - Node 8"
-      os: osx
-      osx_image: xcode10.1
-      language: node_js
-      node_js: "8"
-    - name: "OS X - Node 10"
-      os: osx
-      osx_image: xcode10.1
-      language: node_js
-      node_js: "10"
-    - name: "OS X - Node 11"
-      os: osx
-      osx_image: xcode10.1
-      language: node_js
-      node_js: "11"
+    # - name: "OS X - Node 6"
+    #   os: osx
+    #   osx_image: xcode10.1
+    #   language: node_js
+    #   node_js: "6"
+    # - name: "OS X - Node 8"
+    #   os: osx
+    #   osx_image: xcode10.1
+    #   language: node_js
+    #   node_js: "8"
+    # - name: "OS X - Node 10"
+    #   os: osx
+    #   osx_image: xcode10.1
+    #   language: node_js
+    #   node_js: "10"
+    # - name: "OS X - Node 11"
+    #   os: osx
+    #   osx_image: xcode10.1
+    #   language: node_js
+    #   node_js: "11"
 
 before_install:
   - echo $CC
