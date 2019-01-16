@@ -1,5 +1,4 @@
 compiler:
-  - clang
   - gcc
 addons:
   apt:
@@ -17,6 +16,8 @@ matrix:
       node_js: "6"
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+before_install: 
+  - eval "${MATRIX_EVAL}"
     # - name: "Linux (glibc) - Node 8"
     #   os: linux
     #   dist: trusty
