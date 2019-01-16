@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/xVanTuring/cquant.svg?branch=master)](https://travis-ci.org/xVanTuring/cquant)
 ## Usage
 > Current Supported Prebuild binary version: Node 6 | 8 | 10 | 11 \
-> For Electron user: only binary supported version is v4. More Info On: [Build For Electron](#electron-build)
+> For Electron user: Fixing, Coming soon ~~only binary supported version is v4. More Info On: [Build For Electron](#electron-build)~~
 
 > `npm i cquant`
 ### Basic

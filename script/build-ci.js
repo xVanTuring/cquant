@@ -39,10 +39,11 @@ log.info('begin', 'Prebuild-CI version', version)
 
 prebuild('node', process.versions.node, function (err, code) {
   if (err) process.exit(code)
-
-  prebuild('electron', '4.0.1', function (err, code) {
-    if (err) process.exit(code)
-    log.info('All done!')
-    process.exit(code)
-  })
+  log.info('All done!')
+  process.exit(code)
+  // prebuild('electron', '4.0.1', function (err, code) {
+  //   if (err) process.exit(code)
+  //   log.info('All done!')
+  //   process.exit(code)
+  // })
 })
