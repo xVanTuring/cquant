@@ -9,17 +9,17 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
+            - gcc-7
             - g++-7
       dist: trusty
-      sudo: false
+      sudo: true
       language: node_js
       node_js: "6"
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-before_install: 
-  - test -n $CC  && unset CC
-  - test -n $CXX && unset CXX
-  - eval "${MATRIX_EVAL}"
+before_install:
+  - sudo ln -s /usr/bin/gcc-7 /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++-7 /usr/local/bin/g++
+  - export CC=/usr/bin/gcc-7
+  - export CXX=/usr/bin/g++-7
   - gcc -v
   - g++ -v
     # - name: "Linux (glibc) - Node 8"
