@@ -6,18 +6,42 @@ matrix:
       sudo: false
       language: node_js
       node_js: "6"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+      packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - name: "Linux (glibc) - Node 8"
       os: linux
       dist: trusty
       sudo: false
       language: node_js
       node_js: "8"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+      packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - name: "Linux (glibc) - Node 10"
       os: linux
       dist: trusty
       sudo: false
       language: node_js
       node_js: "10"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+      packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
       after_success:
         - npm install coveralls
         - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
