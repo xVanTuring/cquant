@@ -1,1 +1,1 @@
-console.log(require('node-addon-api').include.replace(/\"/g, ""))
+process.stdout.write(require('node-addon-api').include.replace(/\"/g, ""))
