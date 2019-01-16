@@ -1,15 +1,15 @@
 compiler:
   - gcc
-addons:
-  apt:
-    sources:
-        - ubuntu-toolchain-r-test
-    packages:
-        - g++-7
 matrix:
   include:
     - name: "Linux (glibc) - Node 6"
       os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
       dist: trusty
       sudo: false
       language: node_js
@@ -17,7 +17,11 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 before_install: 
+  - test -n $CC  && unset CC
+  - test -n $CXX && unset CXX
   - eval "${MATRIX_EVAL}"
+  - gcc -v
+  - g++ -v
     # - name: "Linux (glibc) - Node 8"
     #   os: linux
     #   dist: trusty
