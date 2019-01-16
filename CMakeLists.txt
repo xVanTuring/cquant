@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-
+SET (CMAKE_C_FLAGS_INIT "-Wall -std=c11")
 project(cquant)
 
 include_directories(${CMAKE_JS_INC})
