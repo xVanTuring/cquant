@@ -21,5 +21,3 @@ build: off
 test_script:
   # - npm run rebuild
   - npm run test
-only_commits:
-  message: /^(appv|all)build/

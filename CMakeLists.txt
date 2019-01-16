@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 # SET (CMAKE_C_FLAGS_INIT "-Wall -std=c++11 -std=c11")
+# set(CMAKE_CXX_FLAGS "-fPIC")
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 project(cquant)
 
 include_directories(${CMAKE_JS_INC})
