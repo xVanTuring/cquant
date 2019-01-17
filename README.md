@@ -1,6 +1,7 @@
 # CQuant
 [![Build status](https://ci.appveyor.com/api/projects/status/gy8vrvnkhrh9tw1s?svg=true)](https://ci.appveyor.com/project/xVanTuring/cquant)
 [![Build Status](https://travis-ci.org/xVanTuring/cquant.svg?branch=master)](https://travis-ci.org/xVanTuring/cquant)
+## View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
 ## Usage
 > Current Supported Prebuild binary version: Node 6 | 8 | 10 | 11 \
 > For Electron user:  More Info On: [Electron](#electron)
@@ -56,17 +57,9 @@ const myQueue = async.queue(async (filePath) => {
 |---------------|:--------:|
 | cquant        |    3ms   |
 | image-palette |   950ms  |
-## Build Your Self
-### CMake
-You need to install [CMake](https://cmake.org/download/) based on your System.
-### Build Tool
-To be able to build from the source, you also need the standard build tool based on your OS.
-#### For Windows User
-* You can use this awesome app [windows-build-tools](https://www.npmjs.com/package/windows-build-tools) to auto download all tools needed, if you don't have visual studio installed
-* If you have already installed a visual studio like vs2017, basicly you just need to enable c++ developement(it's gonna be huge).
-### Electron
+## Electron
 > All this is on windows, linux is not tested currently;
-#### Electron v4
+### Electron v4
 **!!! IMPORTANT !!!**\
 You **CANNOT** use `electron-rebuild`, it will download the prebuild-binary for electron v3, which is NOT compatible.There are 2 thing you need to do:
 1. download v4 [prebuild-binary](https://github.com/xVanTuring/cquant/releases/download/v0.0.18/cquant-v0.0.18-electron-v4-win32-x64.zip),unzip and copy to cquant' build folder.Look like:
@@ -90,10 +83,25 @@ and the .forge-meta contains
 x64--64
 ```
 
-#### Electron v3
+### Electron v3
 1. install `electron-rebuild`
 2. run `.\node_modules\.bin\electron-rebuild`
-
+## Build Your Self
+### CMake
+You need to install [CMake](https://cmake.org/download/) based on your System.
+### Build Tool
+To be able to build from the source, you also need the standard build tool based on your OS.
+#### For Windows User
+* You can use this awesome app [windows-build-tools](https://www.npmjs.com/package/windows-build-tools) to auto download all tools needed, if you don't have visual studio installed
+* If you have already installed a visual studio like vs2017, basicly you just need to enable c++ developement(it's gonna be huge).
+### Build it
+> for more info you can view project [cmake-js](https://github.com/cmake-js/cmake-js#installation)
+Basically you need run this command 
+``` bash
+cmake-js -r electron -v 4.0.0 rebuild # for electron
+cmake-js -r node -v 10.0.0 rebuild # for node
+```
+And of course if you use `electron-prebuild` make sure you add the `cache file` mentioned before
 ## Async!
 This package is real async, and also very fast
 ## TODO
