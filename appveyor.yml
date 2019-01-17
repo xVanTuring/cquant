@@ -6,18 +6,14 @@ platform:
 - x64
 environment:
   matrix:
-    - nodejs_version: "6"
     - nodejs_version: "8"
-    - nodejs_version: "10"
-    - nodejs_version: "11"
 matrix:
   fast_finish: true
 install:
-    - ps: Install-Product node $env:nodejs_version x64
+    - ps: Install-Product node 8 x64
     - ps: node --version
     - cmd: git submodule update --init --recursive
     - cmd: npm install
 build: off
 test_script:
-  # - npm run rebuild
   - npm run test

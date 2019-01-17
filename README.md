@@ -69,7 +69,7 @@ To be able to build from the source, you also need the standard build tool based
 not gonna work for one prebuild binary, so I only created a v4 version,you can still compile it by you self
 1. Get All tool need, like cmake and build tool based on you OS;
 2. before you install the package, and following code to you package.json
-``` json
+``` js
   "cmake-js": {
     "runtime": "electron", // it can also be node/nw
     "runtimeVersion": "3.0.0", // the version that you want like v3.0.0
