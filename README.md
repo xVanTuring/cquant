@@ -2,11 +2,18 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/gy8vrvnkhrh9tw1s?svg=true)](https://ci.appveyor.com/project/xVanTuring/cquant)
 [![Build Status](https://travis-ci.org/xVanTuring/cquant.svg?branch=master)](https://travis-ci.org/xVanTuring/cquant)
 ## View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
+## Preview
+<!-- ![Ori]() -->
+<img src="./img/3.jpg" width="700px" style="margin:0 auto; display:block">
+<img src="./img/result.png" width="500px" style="margin:0 auto; display:block">
+
 ## Usage
 > Current Supported Prebuild binary version: Node 6 | 8 | 10 | 11 \
 > For Electron user:  Prebuild Supported Version v3 and v4.0.4
-
+### Install
 > `npm i cquant`
+#### Electron User
+After running the install command make sure to use electron-rebuild to rebuild it for electron, usually it will just download the prebuild.
 ### Basic
 ``` js
 const cquant = require('cquant')

@@ -44,3 +44,22 @@ sharp('./img/2.png')
       })
     }
   })
+sharp('./img/3.jpg')
+  .raw()
+  .toBuffer((err, buffer, info) => {
+    if (!err) {
+      let start = Date.now()
+      cquant.paletteAsync(buffer, info.channels, 5, (err, val) => {
+        if (err) {
+          console.log(err)
+        } else {
+          let time = Date.now() - start;
+          console.log('test4: ' + time + ' ms')
+          // console.log(val)
+          val.forEach(item => {
+            console.log(`rgb(${item['R']},${item['G']},${item['B']})`)
+          })
+        }
+      })
+    }
+  })

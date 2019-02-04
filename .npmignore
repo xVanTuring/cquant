@@ -5,3 +5,4 @@ build
 node_modules
 **/.git
 prebuilds
+.ccls-cache
