@@ -17,3 +17,6 @@ before_install:
   - echo $CC
   - clang -v
   - clang++ -v
+install:
+  - npm install
+  - npm install sharp async image-palette image-pixels
