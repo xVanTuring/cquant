@@ -1,6 +1,6 @@
 {
   "name": "cquant",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "A fast and native image palette generator",
   "main": "cquant.js",
   "types": "./cquant.d.ts",
