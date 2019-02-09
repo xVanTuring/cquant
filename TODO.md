@@ -3,3 +3,4 @@
 2. use typescript wrapper
 3. ~~add travis-ci~~
 4. remove rgba or not 
+5. add samrt parameter

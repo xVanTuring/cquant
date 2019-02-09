@@ -6,3 +6,4 @@ node_modules
 **/.git
 prebuilds
 .ccls-cache
+compile_commands.json

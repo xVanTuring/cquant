@@ -13,6 +13,8 @@
 > `npm i cquant`
 #### Electron User
 After running the install command make sure to use electron-rebuild to rebuild it for electron, usually it will just download the prebuild.
+## Async!
+This package is real async. You can run multiple task without blocking the main loop
 ### Basic
 ``` js
 const cquant = require('cquant')
@@ -63,7 +65,6 @@ const myQueue = async.queue(async (filePath) => {
 |---------------|:--------:|
 | cquant        |    3ms   |
 | image-palette |   950ms  |
-
 ## Build Your Self
 ### CMake
 You need to install [CMake](https://cmake.org/download/) based on your System.
@@ -80,8 +81,7 @@ cmake-js -r electron -v 4.0.4 rebuild # for electron
 cmake-js -r node -v 10.0.0 rebuild # for node
 ```
 And of course if you use `electron-prebuild` make sure you add the `cache file` mentioned before
-## Async!
-This package is real async, and also very fast
+
 ## TODO
 * add para for subsampling
 

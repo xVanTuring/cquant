@@ -20,3 +20,4 @@ before_install:
 install:
   - npm install
   - npm install sharp async image-palette image-pixels
+if: tag IS present
