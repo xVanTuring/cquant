@@ -1,5 +1,6 @@
 const cquant = require('../cquant')
 const fs = require('fs')
+const path = require('path')
 const sharp = require('sharp')
 const stylePart = `
 <style>
@@ -30,45 +31,30 @@ function generateOutput(imagePath, result) {
   let imgStr = generateImage(imagePath)
   return stylePart + imgStr + blkStr;
 }
-
-sharp('./img/1.jpg')
-  .raw()
-  .toBuffer((err, buffer, info) => {
-    if (!err) {
-      let start = Date.now()
-      cquant.paletteAsync(buffer, info.channels, 5).then(res => {
-        let time = Date.now() - start;
-        // save to html
-        console.log('test2: ' + time + ' ms')
-        console.log(res)
-        let result_html = generateOutput('1.jpg', res)
-        fs.writeFile('./img/1.jpg.html', result_html, () => {
-          console.log("Output File saved: ./img/1.jpg.html")
-        });
-      }).catch(err => {
-        console.log(err)
-      })
-    }
-  })
-sharp('./img/3.jpg')
-  .raw()
-  .toBuffer((err, buffer, info) => {
-    if (!err) {
-      let start = Date.now()
-      cquant.paletteAsync(buffer, info.channels, 5, (err, res) => {
-        if (err) {
-          console.log(err)
-        } else {
+function test(imagePath, subSample = 0) { // './img/0.jpg'
+  let id = parseInt(Math.random() * 10000);
+  sharp(imagePath)
+    .raw()
+    .toBuffer((err, buffer, info) => {
+      if (!err) {
+        let start = Date.now()
+        cquant.paletteAsync(buffer, info.channels, 5, subSample).then(res => {
           let time = Date.now() - start;
-          console.log('test4: ' + time + ' ms')
-          let result_html = generateOutput('3.jpg', res)
-          fs.writeFile('./img/3.jpg.html', result_html, () => {
-            console.log("Output File saved: ./img/3.jpg.html")
+          // save to html
+          console.log(`Test: ${imagePath} done! cost: ${time} ms`)
+          console.log(res)
+          let result_html = generateOutput(path.basename(imagePath), res)
+          fs.writeFile(imagePath + ((subSample === 0) ? ".scaled" : ".full") + ".html", result_html, () => {
+            console.log(`Output File saved: ${imagePath + ((subSample === 0) ? ".scaled" : ".full") + ".html"}`)
           });
-          res.forEach(item => {
-            console.log(`rgb(${item['R']},${item['G']},${item['B']})`)
-          })
-        }
-      })
-    }
-  })
+        }).catch(err => {
+          console.log(err)
+        })
+      }
+    })
+}
+test('./img/large.1.jpg')
+test('./img/large.1.png')
+test('./img/large.1.png', 1)
+test('./img/large.2.jpg', 1)
+test('./img/normal.jpg', 1)

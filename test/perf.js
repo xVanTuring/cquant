@@ -18,49 +18,51 @@ var pixels = require('image-pixels');
 // cquant
 const sharp = require('sharp')
 const cquant = require('../cquant')
-sharp('./img/0.jpg')
+sharp('./img/large.1.jpg')
   .toBuffer((err, buffer, info) => {
     if (!err) {
       let start2 = Date.now()
-      cquant.paletteAsync(buffer, info.channels, 5, (_err, res) => {
+      cquant.paletteAsync(buffer, info.channels, 5, 0, (_err, res) => {
         if (!_err) {
           let time = Date.now() - start2;
-          console.log('cquant: 0.jpg 5572 x 3715 Time: ' + time + ' ms')
+          console.log(`cquant: large.1.jpg ${info.width} x ${info.height} Time: ${time} ms`)
         }
       })
     }
   });
-// 3.jpg 1920 x 1280
-// image-palette
-// (async () => {
-//   let start1 = Date.now();
-//   let pixs = await pixels('./img/3.jpg')
-//   var { ids, colors } = palette(pixs)
-//   let time = Date.now() - start1
-//   console.log('image-palette: 3.jpg 1920 x 1280 Time: ' + time + ' ms')
-// })();
 (function () {
   let start1 = Date.now();
-  pixels('./img/3.jpg').then(pixs => {
+  pixels('./img/normal.jpg').then(pixs => {
     palette(pixs)
     let time = Date.now() - start1
-    console.log('image-palette: 3.jpg 1920 x 1280 Time: ' + time + ' ms')
+    console.log(`image-palette: normal.jpg 1920 x 1280 Time: ${time}  ms`)
   }).catch(err => {
   })
 })();
 // cquant
-sharp('./img/3.jpg')
+sharp('./img/normal.jpg')
   .toBuffer((err, buffer, info) => {
     if (!err) {
       let start2 = Date.now()
-      cquant.paletteAsync(buffer, info.channels, 5, (_err, res) => {
+      cquant.paletteAsync(buffer, info.channels, 5, 0, (_err, res) => {
         if (!_err) {
           let time = Date.now() - start2;
-          console.log('cquant: 3.jpg 1920 x 1280 Time: ' + time + ' ms')
+          console.log(`cquant: normal.jpg 1920 x 1280 Time: ${time} ms`)
         }
       })
     }
   });
-
+sharp('./img/large.1.jpg')
+  .toBuffer((err, buffer, info) => {
+    if (!err) {
+      let start2 = Date.now()
+      cquant.paletteAsync(buffer, info.channels, 5, 1, (_err, res) => {
+        if (!_err) {
+          let time = Date.now() - start2;
+          console.log(`cquant: large.1.jpg ${info.width} x ${info.height} No SubSample Time: ${time} ms`)
+        }
+      })
+    }
+  });
 // cquant with no sub_smaple
 // TODO:

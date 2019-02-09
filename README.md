@@ -3,9 +3,8 @@
 [![Build Status](https://travis-ci.org/xVanTuring/cquant.svg?branch=master)](https://travis-ci.org/xVanTuring/cquant)
 ## View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
 ## Preview
-<!-- ![Ori]() -->
-<img src="./img/3.jpg" width="700px" style="margin:0 auto; display:block">
-<img src="./img/result.png" width="500px" style="margin:0 auto; display:block">
+![Screenshot from 2019-02-09 15-16-53.png](https://i.loli.net/2019/02/09/5c5e7e7b2d278.png)
+![Screenshot from 2019-02-09 15-16-32.png](https://i.loli.net/2019/02/09/5c5e7e7b42cd2.png)
 
 ## Usage
 > Current Supported Prebuild binary version: Node 6 | 8 | 10 | 11 \
