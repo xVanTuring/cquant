@@ -1,4 +1,4 @@
-const cquant = require('../cquant')
+const cquant = require('../')
 const fs = require('fs')
 const path = require('path')
 const sharp = require('sharp')
@@ -53,6 +53,7 @@ function test(imagePath, subSample = 0) { // './img/0.jpg'
       }
     })
 }
+console.log('Start Image Testing')
 test('./img/large.1.jpg')
 test('./img/large.1.png')
 test('./img/large.1.png', 1)
