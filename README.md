@@ -75,18 +75,18 @@ const myQueue = async.queue(async (filePath) => {
 
 ## Perf
 > test result will be diff based on your local machine
-### JPG 5572 x 3715
+### JPG 5572 x 3715 (No SubSample)
 | Program       | Time(ms) |
 |---------------|:--------:|
-| cquant        | 14-15 ms |
+| cquant        |   60 ms  |
 | image-palette |    N/A   |
 > N/A: crashed
 
-### JPG 1920 x 1280
+### JPG 1920 x 1280 (No SubSample)
 
 | Program       | Time(ms) |
 |---------------|:--------:|
-| cquant        |    3ms   |
+| cquant        |   12ms   |
 | image-palette |   950ms  |
 ## Build Your Self
 ### CMake

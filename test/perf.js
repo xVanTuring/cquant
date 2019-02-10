@@ -19,6 +19,7 @@ var pixels = require('image-pixels');
 const sharp = require('sharp')
 const cquant = require('../cquant')
 sharp('./img/large.1.jpg')
+  .raw()
   .toBuffer((err, buffer, info) => {
     if (!err) {
       let start2 = Date.now()
@@ -41,6 +42,7 @@ sharp('./img/large.1.jpg')
 })();
 // cquant
 sharp('./img/normal.jpg')
+  .raw()
   .toBuffer((err, buffer, info) => {
     if (!err) {
       let start2 = Date.now()
@@ -52,7 +54,8 @@ sharp('./img/normal.jpg')
       })
     }
   });
-sharp('./img/large.1.jpg')
+sharp('./img/large.2.jpg')
+  .raw()
   .toBuffer((err, buffer, info) => {
     if (!err) {
       let start2 = Date.now()
