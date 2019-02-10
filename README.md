@@ -13,8 +13,31 @@
 > `npm i cquant`
 #### Electron User
 After running the install command make sure to use electron-rebuild to rebuild it for electron, usually it will just download the prebuild.
-## Async!
+### Async!
 This package is real async. You can run multiple task without blocking the main loop
+### API
+``` ts
+  interface Color {
+      R: number;
+      G: number;
+      B: number;
+      count: number;
+  }
+  declare type Palette = Color[];
+  type CallBackFunc = (err: Error | undefined | string, result: Palette) => void;
+
+  function paletteAsync(buffer: Buffer, depth=3, maxColor=5, maxSub=0): Promise<Palette>;
+  /**
+   * 
+   * @param buffer Image Buffer(RGB/RGBA)
+   * @param depth 3 or 4 for RGB/RGBA
+   * @param maxColor Color Amout You want
+   * @param maxSub max subsample for image, 1 for no sub sample,0 for auto, by default it will scale to size of `1000x1000`
+   * @param callback callback with err and result
+   */
+  function paletteAsync(buffer: Buffer, depth=3, maxColor=5, maxSub=0, callback:CallBackFunc): void;
+
+```
 ### Basic
 ``` js
 const cquant = require('cquant')
@@ -37,7 +60,7 @@ sharp('path/to/image')
   })
 ``` 
 ### With `async.queue`
-> If you have lots of image to process, the best way to do it is using [async](https://www.npmjs.com/package/async).queue for parallel, and control-able
+> If you have lots of image to process, the best way to do it is using [async](https://www.npmjs.com/package/async).queue for parallel, and controllable
 ``` js
 // test/example.js
 const myQueue = async.queue(async (filePath) => {
@@ -80,10 +103,5 @@ Basically you need run this command
 cmake-js -r electron -v 4.0.4 rebuild # for electron
 cmake-js -r node -v 10.0.0 rebuild # for node
 ```
-And of course if you use `electron-prebuild` make sure you add the `cache file` mentioned before
-
-## TODO
-* add para for subsampling
-
 ---
 xVan Turing 2019
