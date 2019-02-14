@@ -1,5 +1,6 @@
 # CQuant
 [![Build status](https://ci.appveyor.com/api/projects/status/gy8vrvnkhrh9tw1s?svg=true)](https://ci.appveyor.com/project/xVanTuring/cquant)
+## CQuant-Web is coming soon!!!!!
 [![Build Status](https://travis-ci.org/xVanTuring/cquant.svg?branch=master)](https://travis-ci.org/xVanTuring/cquant)
 ## View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
 ## Preview
