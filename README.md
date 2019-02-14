@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/xVanTuring/cquant.svg?branch=master)](https://travis-ci.org/xVanTuring/cquant)
 ## View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
 ## Preview
-![Screenshot from 2019-02-09 15-16-53.png](https://i.loli.net/2019/02/09/5c5e7e7b2d278.png)
 ![Screenshot from 2019-02-09 15-16-32.png](https://i.loli.net/2019/02/09/5c5e7e7b42cd2.png)
 
 ## Usage

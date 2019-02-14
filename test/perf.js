@@ -9,7 +9,7 @@ var pixels = require('image-pixels');
 
 // (async () => {
 //   let start1 = Date.now();
-//   let pixs = await pixels('./img/0.jpg')
+//   let pixs = await pixels('./img/large.1.jpg')
 //   var { ids, colors } = palette(pixs)
 //   let time = Date.now() - start1
 //   console.log(time)

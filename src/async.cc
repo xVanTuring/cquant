@@ -3,14 +3,10 @@
 #include <napi.h>
 class PaletteWorker : public Napi::AsyncWorker {
 public:
-  PaletteWorker(Napi::Function &callback, PIX *pix, int max_color,
-                int max_sub)
-      : Napi::AsyncWorker(callback), pix(pix), max_color(max_color),
-        counter(NULL), cmap(NULL), max_sub(max_sub) {}
+  PaletteWorker(Napi::Function &callback, PIX *pix, int max_color, int max_sub)
+      : Napi::AsyncWorker(callback), pix(pix), max_color(max_color), cmap(NULL),
+        max_sub(max_sub) {}
   ~PaletteWorker() {
-    if (counter) {
-      free(counter);
-    }
     if (cmap) {
       if (cmap->array) {
         free(cmap->array);
@@ -21,10 +17,7 @@ public:
       free(pix);
     }
   }
-  void Execute() {
-    counter = (size_t *)malloc(sizeof(size_t) * max_color);
-    cmap = pix_median_cut_quant(pix, max_color, 5, max_sub, counter);
-  }
+  void Execute() { cmap = pix_median_cut_quant(pix, max_color, 5, max_sub); }
   void OnOK() {
     Napi::HandleScope scope(Env());
 
@@ -36,13 +29,13 @@ public:
     }
 
     Napi::Array result = Napi::Array::New(Env());
-    RGB_QUAD *quad = (RGB_QUAD *)cmap->array;
+    RGBC_QUAD *quad = (RGBC_QUAD *)cmap->array;
     for (size_t i = 0; i < cmap->n; i++) {
       Napi::Object item = Napi::Object::New(Env());
       item.Set("R", quad[i].red);
       item.Set("G", quad[i].green);
       item.Set("B", quad[i].blue);
-      item.Set("count", counter[i]);
+      item.Set("count", quad[i].count);
       result.Set(i, item);
     }
     Callback().Call({Env().Undefined(), result});
@@ -52,7 +45,6 @@ private:
   PIX *pix;
   int max_color;
   PIXCMAP *cmap;
-  size_t *counter;
   int max_sub;
 };
 Napi::Value PaletteAsync(const Napi::CallbackInfo &info) {
@@ -74,7 +66,8 @@ Napi::Value PaletteAsync(const Napi::CallbackInfo &info) {
     pix->pixs = buffer.Data();
   }
   pix->depth = depth;
-  PaletteWorker *paletteWorker = new PaletteWorker(callback, pix, max_color, max_sub);
+  PaletteWorker *paletteWorker =
+      new PaletteWorker(callback, pix, max_color, max_sub);
   paletteWorker->Queue();
   return info.Env().Undefined();
 }
