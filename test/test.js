@@ -41,10 +41,10 @@ function test(imagePath, subSample = 0) { // './img/0.jpg'
           let time = Date.now() - start;
           // save to html
           console.log(`Test: ${imagePath} done! cost: ${time} ms`)
-          let result_html = generateOutput(path.basename(imagePath), res)
-          fs.writeFile(imagePath + ((subSample === 0) ? ".scaled" : ".full") + ".html", result_html, () => {
-            console.log(`Output File saved: ${imagePath + ((subSample === 0) ? ".scaled" : ".full") + ".html"}`)
-          });
+          // let result_html = generateOutput(path.basename(imagePath), res)
+          // fs.writeFile(imagePath + ((subSample === 0) ? ".scaled" : ".full") + ".html", result_html, () => {
+          //   console.log(`Output File saved: ${imagePath + ((subSample === 0) ? ".scaled" : ".full") + ".html"}`)
+          // });
         })
       }
     })
