@@ -1,7 +1,7 @@
 # CQuant
 [![Build status](https://ci.appveyor.com/api/projects/status/gy8vrvnkhrh9tw1s?svg=true)](https://ci.appveyor.com/project/xVanTuring/cquant)
-## CQuant-Web is coming soon!!!!!
 [![Build Status](https://travis-ci.org/xVanTuring/cquant.svg?branch=master)](https://travis-ci.org/xVanTuring/cquant)
+## CQuant-Web is coming soon!!!!!
 ## View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
 ## Preview
 ![Screenshot from 2019-02-09 15-16-32.png](https://i.loli.net/2019/02/09/5c5e7e7b42cd2.png)
@@ -15,18 +15,29 @@
 After running the install command make sure to use electron-rebuild to rebuild it for electron, usually it will just download the prebuild.
 ### Async!
 This package is real async. You can run multiple task without blocking the main loop
-### API
-``` ts
-  interface Color {
-      R: number;
-      G: number;
-      B: number;
-      count: number;
-  }
-  declare type Palette = Color[];
-  type CallBackFunc = (err: Error | undefined | string, result: Palette) => void;
+### Basic
+``` js
+const cquant = require('cquant')
+// use sharp to conver image to RGB Buffer Array fast and clear
+const sharp = require('sharp')
+sharp('path/to/image')
+  .raw() // convert raw buffer like [RGB RGB RGB RGB]
+  .toBuffer((_err, buffer, info) => {
+    if (!_err) {
+      let colorCount = 4
 
-  function paletteAsync(buffer: Buffer, depth=3, maxColor=5, maxSub=0): Promise<Palette>;
+      cquant.paletteAsync(buffer, info.channels, colorCount).then(res => {
+
+        console.log(res)
+      }).catch(err => {
+
+        console.log(err)
+      })
+    }
+  })
+``` 
+### API
+``` ts  
   /**
    * 
    * @param buffer Image Buffer(RGB/RGBA)
@@ -36,43 +47,17 @@ This package is real async. You can run multiple task without blocking the main 
    * @param callback callback with err and result
    */
   function paletteAsync(buffer: Buffer, depth=3, maxColor=5, maxSub=0, callback:CallBackFunc): void;
-
+  interface Color {
+      R: number; /*red*/
+      G: number; /*green*/
+      B: number; /*blue*/
+      count: number; /*count*/
+  }
+  declare type Palette = Color[];
+  type CallBackFunc = (err, result: Palette) => void;
+  function paletteAsync(buffer: Buffer, depth=3, maxColor=5, maxSub=0): Promise<Palette>;
+  
 ```
-### Basic
-``` js
-const cquant = require('cquant')
-// work best with sharp for converting image to RAW buffer
-const sharp = require('sharp')
-sharp('path/to/image')
-  .raw() // convert raw buffer like RGB RGB RGB RGB
-  .toBuffer((err, buffer, info) => {
-    if (!err) {
-      // you need to set the buffer and
-      // the depth(only 3 (for RGB) and 4 (for RGBA) are accepted )
-      // you can use callback, or leave it empty for promise
-      let iWantForColor = 4
-      cquant.paletteAsync(buffer, info.channels, iWantForColor).then(res => {
-        console.log(res)
-      }).catch(err => {
-        console.log(err)
-      })
-    }
-  })
-``` 
-### With `async.queue`
-> If you have lots of image to process, the best way to do it is using [async](https://www.npmjs.com/package/async).queue for parallel, and controllable
-``` js
-// test/example.js
-const myQueue = async.queue(async (filePath) => {
-  // note : i am using the `async` function, so the callback is not needed
-  const img = await sharp(filePath)
-    .raw() // to raw
-    .toBuffer({ resolveWithObject: true })
-  const palette = await cquant.paletteAsync(img.data, img.info.channels, 5)
-  console.log(palette)
-}, os.cpus().length - 1)
-```
-
 ## Perf
 > test result will be diff based on your local machine
 ### JPG 5572 x 3715 (No SubSample)
@@ -88,6 +73,20 @@ const myQueue = async.queue(async (filePath) => {
 |---------------|:--------:|
 | cquant        |   12ms   |
 | image-palette |   950ms  |
+## Extra
+### With `async.queue`
+> If you have lots of image to process, the best way to do it is using [async](https://www.npmjs.com/package/async).queue for parallel, and controllable
+``` js
+// test/example.js
+const myQueue = async.queue(async (filePath) => {
+  // note : using the `async` function, so the callback is not needed
+  const img = await sharp(filePath)
+    .raw() // to raw
+    .toBuffer({ resolveWithObject: true })
+  const palette = await cquant.paletteAsync(img.data, img.info.channels, 5)
+  console.log(palette)
+}, os.cpus().length - 1)
+```
 ## Build Your Self
 ### CMake
 You need to install [CMake](https://cmake.org/download/) based on your System.
