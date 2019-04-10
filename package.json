@@ -1,13 +1,13 @@
 {
   "name": "cquant",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A fast and native image palette generator",
   "main": "cquant.js",
   "types": "./cquant.d.ts",
   "scripts": {
     "install": "prebuild-install || cmake-js rebuild",
     "rebuild": "cmake-js configure && cmake-js build",
-    "test": "node ./test/test.js && node ./test/api-test.js && node ./test/perf.js && node ./script/build-deploy.js",
+    "test": "node ./test/api-test.js && node ./test/perf.js && node ./script/build-deploy.js",
     "tsc": "tsc --build"
   },
   "keywords": [
