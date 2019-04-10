@@ -34,5 +34,9 @@ let buildQueue = async.queue(({ r, t }, callback) => {
   })
 }, 1)
 allVersion.forEach((version) => {
-  buildQueue.push(version)
+  buildQueue.push(version, (err, ) => {
+    if (err) {
+      console.log(err)
+    }
+  })
 })
