@@ -11,8 +11,6 @@
 > For Electron user:  Prebuild Supported Version v3 and v4.0.4
 ### Install
 > `npm i cquant`
-#### Electron User
-After running the install command make sure to use electron-rebuild to rebuild it for electron, usually it will just download the prebuild.
 ### Async!
 This package is real async. You can run multiple task without blocking the main loop
 ### Basic
@@ -87,6 +85,8 @@ const myQueue = async.queue(async (filePath) => {
   console.log(palette)
 }, os.cpus().length - 1)
 ```
+## Electron User
+After running the install command make sure to use electron-rebuild to rebuild it for electron, usually it will just download the prebuild.
 ## Build Your Self
 ### CMake
 You need to install [CMake](https://cmake.org/download/) based on your System.
