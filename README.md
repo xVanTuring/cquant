@@ -1,7 +1,6 @@
 # CQuant
 [![Build status](https://ci.appveyor.com/api/projects/status/gy8vrvnkhrh9tw1s?svg=true)](https://ci.appveyor.com/project/xVanTuring/cquant)
 [![Build Status](https://travis-ci.org/xVanTuring/cquant.svg?branch=master)](https://travis-ci.org/xVanTuring/cquant)
-## CQuant-Web is coming soon!!!!!
 ## View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
 ## Preview
 ![Screenshot from 2019-02-09 15-16-32.png](https://i.loli.net/2019/02/09/5c5e7e7b42cd2.png)
@@ -10,6 +9,7 @@
 > Current Supported Prebuild binary version: Node 6 | 8 | 10 | 11 \
 > For Electron user:  Prebuild Supported Version v3 and v4.0.4
 ### Install
+[![Npm](https://badge.fury.io/js/cquant.svg)](https://www.npmjs.com/package/cquant)
 > `npm i cquant`
 ### Async!
 This package is real async. You can run multiple task without blocking the main loop
