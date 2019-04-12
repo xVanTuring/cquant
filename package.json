@@ -7,7 +7,7 @@
   "scripts": {
     "install": "prebuild-install || cmake-js rebuild",
     "rebuild": "cmake-js configure && cmake-js build",
-    "test": "node ./test/api-test.js && node ./test/perf.js && node ./script/build-deploy.js",
+    "test": "node ./test/test.js && node ./test/api-test.js && node ./test/perf.js && node ./script/build-deploy.js",
     "tsc": "tsc --build"
   },
   "keywords": [
