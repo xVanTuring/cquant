@@ -12,6 +12,10 @@ matrix:
       env:
         - CC="/usr/local/clang-7.0.0/bin/clang"
         - CXX="/usr/local/clang-7.0.0/bin/clang++"
+    - name: "OS X - Node 8"
+      os: osx
+      language: node_js
+      sudo: true
 
 before_install:
   - echo $CC
@@ -20,4 +24,4 @@ before_install:
 install:
   - npm install
   - npm install sharp async image-palette image-pixels
-if: tag IS present
+# if: tag IS present
