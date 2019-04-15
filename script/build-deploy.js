@@ -16,7 +16,7 @@ if (!process.env.PREBUILD_TOKEN) {
 }
 let buildQueue = async.queue(({ r, t }, callback) => {
   console.log(`Building: ${r} ${t}`)
-  let argv = ['-r', r, '-t', t, '-u', process.env.PREBUILD_TOKEN, '--backend', 'cmake-js']
+  let argv = ['-r', r, '-t', t, '-u', process.env.PREBUILD_TOKEN,]
   which('prebuild', (err, prebuildPath) => {
     if (err) {
       callback(err)

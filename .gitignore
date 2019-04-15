@@ -4,3 +4,4 @@ node_modules
 prebuilds
 .ccls-cache
 compile_commands.json
+.DS_*

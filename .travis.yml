@@ -3,6 +3,12 @@ compiler:
   - clang
 matrix:
   include:
+    - name: "OS X - Node 8"
+      os: osx
+      osx_image: xcode10.1
+      language: node_js
+      node_js: "8"
+      sudo: true
     - name: "Linux (glibc) - Node 8"
       os: linux
       dist: xenial
@@ -12,11 +18,6 @@ matrix:
       env:
         - CC="/usr/local/clang-7.0.0/bin/clang"
         - CXX="/usr/local/clang-7.0.0/bin/clang++"
-    - name: "OS X - Node 8"
-      os: osx
-      language: node_js
-      node_js: "8"
-      sudo: true
 
 before_install:
   - echo $CC
