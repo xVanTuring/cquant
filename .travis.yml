@@ -25,5 +25,4 @@ before_install:
   - clang++ -v
 install:
   - npm install
-  - npm install sharp async image-palette image-pixels
-# if: tag IS present
+if: tag IS present
