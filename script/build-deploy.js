@@ -1,8 +1,7 @@
 // NODE: support lts version and latest version
 const allVersion = [
-  { r: "node", t: "8.15.1" },
-  { r: "node", t: "10.15.3" },
-  { r: "node", t: "11.14.0" },
+  { r: "napi", t: "3" },
+  { r: "napi", t: "4" },
   { r: "electron", t: "3.0.0" },
   { r: "electron", t: "4.0.4" },
 ]

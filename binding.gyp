@@ -29,7 +29,8 @@
                 'CLANG_CXX_LANGUAGE_STANDARD': 'c++17',
                 # https://github.com/mhdawson/node-sqlite3/blob/node-addon-api/binding.gyp
             },
-            "defines": ["NAPI_DISABLE_CPP_EXCEPTIONS"]
+            "defines": ["NAPI_DISABLE_CPP_EXCEPTIONS",
+                        ]
         }
     ]
 }

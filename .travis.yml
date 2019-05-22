@@ -2,54 +2,54 @@ language: node_js
 if: tag IS present
 matrix:
   include:
-    - name: "OS X - Node 8"
-      os: osx
-      osx_image: xcode10.1
-      language: node_js
-      node_js: "8"
-      sudo: true
-    - name: "OS X - Node 10"
-      os: osx
-      osx_image: xcode10.1
-      language: node_js
-      node_js: "10"
-      sudo: true
+    # - name: "OS X - Node 8"
+    #   os: osx
+    #   osx_image: xcode10.1
+    #   language: node_js
+    #   node_js: "8"
+    #   sudo: true
+    # - name: "OS X - Node 10"
+    #   os: osx
+    #   osx_image: xcode10.1
+    #   language: node_js
+    #   node_js: "10"
+    #   sudo: true
     - name: "OS X - Node 11"
       os: osx
       osx_image: xcode10.1
       language: node_js
       node_js: "11"
       sudo: true
-    - name: "Linux (glibc) - Node 8"
-      os: linux
-      dist: xenial
-      sudo: true
-      language: node_js
-      node_js: "8"
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-8
-      env:
-        - CC="gcc-8"
-        - CXX="g++-8"
-    - name: "Linux (glibc) - Node 10"
-      os: linux
-      dist: xenial
-      sudo: true
-      language: node_js
-      node_js: "10"
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-8
-      env:
-        - CC="gcc-8"
-        - CXX="g++-8"
+    # - name: "Linux (glibc) - Node 8"
+    #   os: linux
+    #   dist: xenial
+    #   sudo: true
+    #   language: node_js
+    #   node_js: "8"
+    #   addons:
+    #     apt:
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #       packages:
+    #         - g++-8
+    #   env:
+    #     - CC="gcc-8"
+    #     - CXX="g++-8"
+    # - name: "Linux (glibc) - Node 10"
+    #   os: linux
+    #   dist: xenial
+    #   sudo: true
+    #   language: node_js
+    #   node_js: "10"
+    #   addons:
+    #     apt:
+    #       sources:
+    #         - ubuntu-toolchain-r-test
+    #       packages:
+    #         - g++-8
+    #   env:
+    #     - CC="gcc-8"
+    #     - CXX="g++-8"
     - name: "Linux (glibc) - Node 11"
       os: linux
       dist: xenial
