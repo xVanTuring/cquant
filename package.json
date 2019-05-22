@@ -1,15 +1,15 @@
 {
   "name": "cquant",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A fast and native image palette generator",
   "main": "cquant.js",
   "types": "./cquant.d.ts",
   "scripts": {
-    "install": "prebuild-install || (npm run configure && node-gyp build)",
-    "configure": "node-gyp configure",
-    "test": "npm run predev && node ./test/test.js && node ./test/api-test.js && node ./test/perf.js && node ./script/build-deploy.js",
+    "install": "prebuild-install || npm run build",
+    "test": "npm run predev && node ./test/test.js && node ./test/api-test.js && node ./test/perf.js && prebuild-ci",
     "tsc": "tsc --build",
-    "predev": "npm install image-palette image-pixels sharp prebuild"
+    "predev": "npm install image-palette image-pixels sharp prebuild-ci prebuild",
+    "build": "node-gyp clean && node-gyp configure && node-gyp build"
   },
   "keywords": [
     "image-palette",
@@ -17,7 +17,6 @@
     "cquant",
     "palette",
     "quant",
-    "quantization",
     "MMCQ"
   ],
   "author": "xVanTuring",
@@ -30,7 +29,7 @@
     "async": "^2.6.2",
     "bindings": "^1.5.0",
     "node-addon-api": "^1.6.3",
-    "prebuild-install": "^5.2.5"
+    "prebuild-install": "^5.3.0"
   },
   "devDependencies": {
     "@types/node": "^10.14.4",

@@ -1,5 +1,8 @@
 const cquant = require('../')
 const sharp = require('sharp')
+console.log("====Api.js====")
+console.log("===============")
+
 function paraTest() {
     sharp('./img/large.1.jpg')
         .raw()

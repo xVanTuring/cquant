@@ -1,26 +1,12 @@
 {
     "targets": [
         {
-            "target_name": "heap",
-            "type": "static_library",
-            "sources": [
-                "./color-quant/heap/src/heap.c",
-                "./color-quant/heap/src/utils.c",
-            ]
-        },
-        {
             "target_name": "color-quant",
             "type": "static_library",
-            "dependencies": [
-                "heap"
-            ],
-            "sources":[
-                "./color-quant/src/colorquant.c",
-                "./color-quant/src/pix.c",
-                "./color-quant/src/vbox.c"
-            ],
-            "include_dirs":[
-                "color-quant/heap/src",
+            "sources": [
+                "./color-quant/src/colorquant.cpp",
+                "./color-quant/src/pix.cpp",
+                "./color-quant/src/vbox.cpp"
             ]
         },
         {
@@ -33,13 +19,17 @@
                 "./src/async.cc"
             ],
             "cflags!": ["-fno-exceptions"],
-            "cflags_cc!": ["-fno-exceptions"],
+            "cflags_cc!": ["-fno-exceptions", ],
             "include_dirs":[
-                "color-quant/heap/src",
                 "color-quant/src",
                 "<!@(node -p \"require('node-addon-api').include\")"
             ],
-            "defines":["NAPI_DISABLE_CPP_EXCEPTIONS"]
+            "xcode_settings": {
+                'CLANG_CXX_LIBRARY': 'libc++',
+                'CLANG_CXX_LANGUAGE_STANDARD': 'c++17',
+                # https://github.com/mhdawson/node-sqlite3/blob/node-addon-api/binding.gyp
+            },
+            "defines": ["NAPI_DISABLE_CPP_EXCEPTIONS"]
         }
     ]
 }

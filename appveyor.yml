@@ -1,21 +1,16 @@
-image:
-- Visual Studio 2017
-skip_non_tags: true
-configuration:
-- Release
-platform:
-- x64
+os: Visual Studio 2015
+version: "{build}"
+build: off
+platform: x64
 environment:
   matrix:
-    - nodejs_version: "8"
-matrix:
-  fast_finish: true
+  - nodejs_version: "8"
+  - nodejs_version: "10"
+  - nodejs_version: "11"
 install:
-    - ps: Install-Product node 8 x64
-    - ps: node --version
-    - cmd: git submodule update --init --recursive
-    - cmd: npm install
-    - cmd: npm install sharp async image-palette image-pixels
-build: off
+  - ps: Install-Product node $env:nodejs_version x64
+  - npm install -g npm@5
+  - cmd: git submodule update --init --recursive
+  - npm install
 test_script:
-  - npm run test
+  - npm test

@@ -1,22 +1,24 @@
 # CQuant
 [![Build status](https://ci.appveyor.com/api/projects/status/gy8vrvnkhrh9tw1s?svg=true)](https://ci.appveyor.com/project/xVanTuring/cquant)
 [![Build Status](https://travis-ci.org/xVanTuring/cquant.svg?branch=master)](https://travis-ci.org/xVanTuring/cquant)
-## View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
-## Preview
-![Screenshot from 2019-02-09 15-16-32.png](https://i.loli.net/2019/02/09/5c5e7e7b42cd2.png)
+[![Npm](https://badge.fury.io/js/cquant.svg)](https://www.npmjs.com/package/cquant)
+<img src="https://s2.ax1x.com/2019/04/15/AvpN8g.png" width="160" alt="cquant.png" title="cquant.png" align="right"/>
+
+Cquant is node-addon-api based node extension, with the performance of C++, you can easily compute the major color of an image. The core algorithm of Cquant is based on [leptonica](http://www.leptonica.com).
 
 ## Usage
-> Current Supported Prebuild binary version: Node 6 | 8 | 10 | 11 \
-> For Electron user:  Prebuild Supported Version v3 and v4.0.4
+### View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
+* Supported Platform: Windows, Linux, macOS
+* Node Supported Prebuild binary version: 6 | 8 | 10 | 11
+* Electron Prebuild Supported Versions: v3 and v4.0.4
 ### Install
-[![Npm](https://badge.fury.io/js/cquant.svg)](https://www.npmjs.com/package/cquant)
-> `npm i cquant`
+> `npm i cquant sharp` // install cquant and sharp
 ### Async!
-This package is real async. You can run multiple task without blocking the main loop
+This package is async. You can run multiple task without blocking the main loop.
 ### Basic
 ``` js
 const cquant = require('cquant')
-// use sharp to conver image to RGB Buffer Array fast and clear
+// use sharp to convert image to RGB Buffer Array
 const sharp = require('sharp')
 sharp('path/to/image')
   .raw() // convert raw buffer like [RGB RGB RGB RGB]
@@ -40,8 +42,8 @@ sharp('path/to/image')
    * 
    * @param buffer Image Buffer(RGB/RGBA)
    * @param depth 3 or 4 for RGB/RGBA
-   * @param maxColor Color Amout You want
-   * @param maxSub max subsample for image, 1 for no sub sample,0 for auto, by default it will scale to size of `1000x1000`
+   * @param maxColor Color Amount You want
+   * @param maxSub max sub-sample for image, 1 for no sub sample,0 for auto, by default it will scale to size of `1000x1000`
    * @param callback callback with err and result
    */
   function paletteAsync(buffer: Buffer, depth=3, maxColor=5, maxSub=0, callback:CallBackFunc): void;
@@ -77,7 +79,6 @@ sharp('path/to/image')
 ``` js
 // test/example.js
 const myQueue = async.queue(async (filePath) => {
-  // note : using the `async` function, so the callback is not needed
   const img = await sharp(filePath)
     .raw() // to raw
     .toBuffer({ resolveWithObject: true })
@@ -85,22 +86,21 @@ const myQueue = async.queue(async (filePath) => {
   console.log(palette)
 }, os.cpus().length - 1)
 ```
+## Preview
+![Screenshot from 2019-02-09 15-16-32.png](https://i.loli.net/2019/02/09/5c5e7e7b42cd2.png)
+
 ## Electron User
 After running the install command make sure to use electron-rebuild to rebuild it for electron, usually it will just download the prebuild.
 ## Build Your Self
-### CMake
-You need to install [CMake](https://cmake.org/download/) based on your System.
 ### Build Tool
 To be able to build from the source, you also need the standard build tool based on your OS.
 #### For Windows User
 * You can use this awesome app [windows-build-tools](https://www.npmjs.com/package/windows-build-tools) to auto download all tools needed, if you don't have visual studio installed
-* If you have already installed a visual studio like vs2017, basicly you just need to enable c++ developement(it's gonna be huge).
+* If you have already installed a visual studio like vs2017, basically you just need to enable c++ development(it's gonna be huge).
 ### Build it
-> for more info you can view project [cmake-js](https://github.com/cmake-js/cmake-js#installation)
 Basically you need run this command 
 ``` bash
-cmake-js -r electron -v 4.0.4 rebuild # for electron
-cmake-js -r node -v 10.0.0 rebuild # for node
+npm run build
 ```
 ---
 xVan Turing 2019

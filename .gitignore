@@ -6,3 +6,4 @@ prebuilds
 compile_commands.json
 .DS_*
 .vscode
+package-lock.json

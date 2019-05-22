@@ -1,3 +1,4 @@
 [submodule "color-quant"]
 	path = color-quant
 	url = https://github.com/xVanTuring/color-quant
+	branch = cpp
