@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const addon = require('node-gyp-build')(__dirname);
+const addon = require('bindings')('cquant');
 function paletteAsync() {
     const [buffer, depth = 3, maxColor = 5, maxSub = 0, callback = null] = arguments;
     if (arguments.length < 1 || buffer == null) {
