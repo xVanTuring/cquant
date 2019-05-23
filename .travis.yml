@@ -19,6 +19,8 @@ matrix:
       language: node_js
       node_js: "11"
       sudo: true
+      env:
+        - BUILD_PREBUILDS="1"
     - name: "Linux (glibc) - Node 8"
       os: linux
       dist: xenial
@@ -64,4 +66,5 @@ matrix:
       env:
         - CC="gcc-8"
         - CXX="g++-8"
+        - BUILD_PREBUILDS="1"
 if: tag IS present

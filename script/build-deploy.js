@@ -1,3 +1,4 @@
+const fs = require('fs')
 const allVersion = [
   { r: "napi", t: "3" },
   { r: "napi", t: "4" },
@@ -5,20 +6,19 @@ const allVersion = [
   { r: "electron", t: "4.2.2" },
   { r: "electron", t: "5.0.1" },
 ]
-const exec = require('child_process').exec
-const command = "git rev-parse --abbrev-ref HEAD"
-const spawn = require('child_process').spawn
 const async = require('async')
-exec(command, (err, stdout) => {
-  if (!err) {
-    let branch = stdout.replace("\n", "")
-    if (branch === "master") {
-      startBuild()
-    } else {
-      console.log(`Current Branch is ${branch}`);
-    }
+if (process.env.BUILD_PREBUILDS) {
+  
+  if (!fs.existsSync('./.DEV')) {
+    startBuild()
+  } else {
+    console.log(`Current Branch is DEV`);
+    console.log("Skip BUILD Now!")
   }
-})
+}else{
+  console.log("Current Environment does not have BUILD_PREBUILDS variable.")
+  console.log("Skip BUILD Now!")
+}
 
 
 function startBuild() {

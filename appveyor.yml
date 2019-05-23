@@ -1,17 +1,17 @@
 os: Visual Studio 2015
 version: "{build}"
 build: off
-skip_non_tags: true
 platform: x64
 environment:
   matrix:
   - nodejs_version: "8"
   - nodejs_version: "10"
   - nodejs_version: "11"
+    BUILD_PREBUILDS: "1"
 install:
   - ps: Install-Product node $env:nodejs_version x64
   - npm install -g npm@5
   - cmd: git submodule update --init --recursive
-  - npm install
+  - npm ci
 test_script:
   - npm test
