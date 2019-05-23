@@ -12,6 +12,6 @@ install:
   - ps: Install-Product node $env:nodejs_version x64
   - npm install -g npm@5
   - cmd: git submodule update --init --recursive
-  - npm ci
+  - npm install
 test_script:
   - npm test
