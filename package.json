@@ -41,5 +41,8 @@
       3,
       4
     ]
+  },
+  "config": {
+    "runtime": "napi"
   }
 }

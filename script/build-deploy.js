@@ -10,8 +10,9 @@ const allVersion = [
 if (process.env.BUILD_PREBUILDS) {
 
   if (process.env.TRAVIS_BRANCH === "master" || process.env.APPVEYOR_REPO_BRANCH === "master") {
-    startBuild()
+    startBuild(true)
   } else {
+    startBuild(false)
     console.log(`Current Branch is ${process.env.TRAVIS_BRANCH || process.env.APPVEYOR_REPO_BRANCH}`);
     console.log("Skip BUILD Now!")
   }
@@ -21,14 +22,14 @@ if (process.env.BUILD_PREBUILDS) {
 }
 
 
-function startBuild() {
+function startBuild(upload = false) {
   if (!process.env.PREBUILD_TOKEN) {
     console.log('No Provided Uploaded token')
     process.exit(0);
   }
   let buildQueue = async.queue(({ r, t }, callback) => {
     console.log(`Building: ${r} ${t}`)
-    let argv = ['-r', r, '-t', t, '-u', process.env.PREBUILD_TOKEN,]
+    let argv = upload ? ['-r', r, '-t', t, '-u', process.env.PREBUILD_TOKEN,] : ['-r', r, '-t', t,]
     let child = spawn("./node_modules/.bin/prebuild", argv)
     child.stdout.pipe(process.stdout)
     child.stderr.pipe(process.stderr)
