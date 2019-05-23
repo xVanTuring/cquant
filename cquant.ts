@@ -1,4 +1,4 @@
-const addon = require('bindings')('cquant');
+const addon = require('node-gyp-build')(__dirname);
 interface Color {
   R: number;
   G: number;

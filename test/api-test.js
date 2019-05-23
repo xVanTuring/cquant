@@ -1,7 +1,7 @@
 const cquant = require('../')
 const sharp = require('sharp')
-console.log("====Api.js====")
-console.log("===============")
+const utils = require('./utils')
+utils.logTag("Api.js")
 
 function paraTest() {
     sharp('./img/large.1.jpg')

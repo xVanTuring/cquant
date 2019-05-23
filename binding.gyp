@@ -13,6 +13,7 @@
             "target_name": "cquant",
             "dependencies": [
                 "color-quant",
+                "<!(node -p \"require('node-addon-api').gyp\")"
             ],
             "sources":[
                 "./src/addon.cc",
@@ -24,13 +25,17 @@
                 "color-quant/src",
                 "<!@(node -p \"require('node-addon-api').include\")"
             ],
-            "xcode_settings": {
-                'CLANG_CXX_LIBRARY': 'libc++',
-                'CLANG_CXX_LANGUAGE_STANDARD': 'c++17',
-                # https://github.com/mhdawson/node-sqlite3/blob/node-addon-api/binding.gyp
-            },
-            "defines": ["NAPI_DISABLE_CPP_EXCEPTIONS",
-                        ]
+            "defines": ["NAPI_DISABLE_CPP_EXCEPTIONS", ],
+            "conditions":[
+                ['OS=="mac"', {
+                    'cflags+': ['-fvisibility=hidden'],
+                    'xcode_settings': {
+                        'GCC_SYMBOLS_PRIVATE_EXTERN': 'YES',  # -fvisibility=hidden
+                        'CLANG_CXX_LIBRARY': 'libc++',
+                        'CLANG_CXX_LANGUAGE_STANDARD': 'c++17',
+                    }
+                }]
+            ]
         }
     ]
 }
