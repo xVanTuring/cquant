@@ -1,5 +1,6 @@
 const async = require('async')
 const spawn = require('child_process').spawn
+const which = require("which")
 const allVersion = [
   { r: "napi", t: "3" },
   { r: "napi", t: "4" },
@@ -10,10 +11,11 @@ const allVersion = [
 if (process.env.BUILD_PREBUILDS) {
 
   if (process.env.TRAVIS_BRANCH === "master" || process.env.APPVEYOR_REPO_BRANCH === "master") {
-    startBuild()
+    startBuild(true)
   } else {
+    startBuild(false)
     console.log(`Current Branch is ${process.env.TRAVIS_BRANCH || process.env.APPVEYOR_REPO_BRANCH}`);
-    console.log("Skip BUILD Now!")
+    console.log("Build Without Uploading")
   }
 } else {
   console.log("Current Environment does not have BUILD_PREBUILDS variable.")
@@ -21,15 +23,16 @@ if (process.env.BUILD_PREBUILDS) {
 }
 
 
-function startBuild() {
-  if (!process.env.PREBUILD_TOKEN) {
+function startBuild(upload = false) {
+  if (upload && !process.env.PREBUILD_TOKEN) {
     console.log('No Provided Uploaded token')
     process.exit(0);
   }
   let buildQueue = async.queue(({ r, t }, callback) => {
     console.log(`Building: ${r} ${t}`)
-    let argv = ['-r', r, '-t', t, '-u', process.env.PREBUILD_TOKEN,]
-    let child = spawn("./node_modules/.bin/prebuild", argv)
+    let argv = upload ? ['-r', r, '-t', t, '-u', process.env.PREBUILD_TOKEN,] : ['-r', r, '-t', t,]
+    let execPath = which.sync('prebuild', { path: "./node_modules/.bin", nothrow: true })
+    let child = spawn(execPath, argv)
     child.stdout.pipe(process.stdout)
     child.stderr.pipe(process.stderr)
     child.on('exit', () => {
