@@ -67,4 +67,4 @@ matrix:
         - CC="gcc-8"
         - CXX="g++-8"
         - BUILD_PREBUILDS="1"
-if: commit_message /(\[build\])|(\[dev\])/
+if: commit_message =~ /(\[build\])|(\[dev\])/

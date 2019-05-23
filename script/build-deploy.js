@@ -1,4 +1,3 @@
-const fs = require('fs')
 const allVersion = [
   { r: "napi", t: "3" },
   { r: "napi", t: "4" },
@@ -8,14 +7,14 @@ const allVersion = [
 ]
 const async = require('async')
 if (process.env.BUILD_PREBUILDS) {
-  
-  if (!fs.existsSync('./.DEV')) {
+
+  if (process.env.TRAVIS_BRANCH === "master" || process.env.APPVEYOR_REPO_BRANCH === "master") {
     startBuild()
   } else {
-    console.log(`Current Branch is DEV`);
+    console.log(`Current Branch is ${process.env.TRAVIS_BRANCH}`);
     console.log("Skip BUILD Now!")
   }
-}else{
+} else {
   console.log("Current Environment does not have BUILD_PREBUILDS variable.")
   console.log("Skip BUILD Now!")
 }
