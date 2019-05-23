@@ -11,7 +11,7 @@ if (process.env.BUILD_PREBUILDS) {
   if (process.env.TRAVIS_BRANCH === "master" || process.env.APPVEYOR_REPO_BRANCH === "master") {
     startBuild()
   } else {
-    console.log(`Current Branch is ${process.env.TRAVIS_BRANCH}`);
+    console.log(`Current Branch is ${process.env.TRAVIS_BRANCH || process.env.APPVEYOR_REPO_BRANCH}`);
     console.log("Skip BUILD Now!")
   }
 } else {
