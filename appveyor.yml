@@ -1,6 +1,7 @@
 os: Visual Studio 2015
 version: "{build}"
 build: off
+skip_non_tags: true
 platform: x64
 environment:
   matrix:
