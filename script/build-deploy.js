@@ -1,3 +1,5 @@
+const async = require('async')
+const spawn = require('child_process').spawn
 const allVersion = [
   { r: "napi", t: "3" },
   { r: "napi", t: "4" },
@@ -5,7 +7,6 @@ const allVersion = [
   { r: "electron", t: "4.2.2" },
   { r: "electron", t: "5.0.1" },
 ]
-const async = require('async')
 if (process.env.BUILD_PREBUILDS) {
 
   if (process.env.TRAVIS_BRANCH === "master" || process.env.APPVEYOR_REPO_BRANCH === "master") {
