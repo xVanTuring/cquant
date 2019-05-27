@@ -5,7 +5,8 @@
 <img src="https://s2.ax1x.com/2019/04/15/AvpN8g.png" width="160" alt="cquant.png" title="cquant.png" align="right"/>
 
 Cquant is node-addon-api based node extension, with the performance of C++, you can easily compute the major color of an image. The core algorithm of Cquant is based on [leptonica](http://www.leptonica.com).
-
+## CQuant-Web is Here!
+[CQuant-Web](https://github.com/xVanTuring/cquant-web)
 ## Usage
 ### View Latest Doc on [Github](https://github.com/xVanTuring/cquant)
 * Supported Platform: Windows, Linux, macOS
